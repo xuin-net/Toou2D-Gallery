@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qmlList.js</file>
+        <file>qml/Basic/Layout.qml</file>
+        <file>qml/Basic/Color.qml</file>
+    </qresource>
+</RCC>

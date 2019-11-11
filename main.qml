@@ -2,6 +2,7 @@ import QtQuick 2.6
 import QtQuick.Window 2.2
 import Toou2D 1.0
 import "./qmlList.js" as QMLList
+import "./qml" as QML
 
 Window {
     id: windows
@@ -33,6 +34,26 @@ Window {
             target: listView
             height: listView.height;
             anchors.right: listView.right;
+        }
+    }
+
+    ListView {
+        id: listView2
+        anchors.right: parent.right;
+        width: 240;height: parent.height;
+
+        currentIndex: -1;
+
+        model: controlModel;
+        delegate: delegateCom;
+
+        section.property: "type"
+        section.delegate: sectionDelegateCom;
+
+        QML.XScrollbar {
+            target: listView2
+            height: listView2.height;
+            anchors.right: listView2.right;
         }
     }
 

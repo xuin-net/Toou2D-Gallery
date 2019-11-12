@@ -2,7 +2,7 @@ var list = [
             {
                 name: "Basic",
                 element: [
-                    {qml: "qrc:/qml/Basic/Layout.qml",      title: "Layout 布局"},
+                    {qml: "qml/Basic/Layout.qml",      title: "Layout 布局"},
                     {qml: "qrc:/qml/Basic/Container.qml",   title: "Container 布局容器"},
                     {qml: "qrc:/qml/Basic/Color.qml",       title: "Color 色彩"},
                     {qml: "qrc:/qml/Basic/Typography.qml",  title: "Typography 字体"},

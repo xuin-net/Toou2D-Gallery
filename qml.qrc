@@ -4,6 +4,5 @@
         <file>qmlList.js</file>
         <file>qml/Basic/Layout.qml</file>
         <file>qml/Basic/Color.qml</file>
-        <file>qml/XScrollbar.qml</file>
     </qresource>
 </RCC>

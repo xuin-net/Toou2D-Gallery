@@ -1,4 +1,5 @@
 import QtQuick 2.6
+//import QtQuick.Controls 2.5
 import QtQuick.Window 2.2
 import Toou2D 1.0
 import "./qmlList.js" as QMLList
@@ -35,26 +36,17 @@ Window {
             height: listView.height;
             anchors.right: listView.right;
         }
+
+        function switchToQML(_src) {
+            contentLoader.source = _src;
+        }
     }
 
-    ListView {
-        id: listView2
+    Loader {
+        id: contentLoader;
+        anchors.left: listView.right;
         anchors.right: parent.right;
-        width: 240;height: parent.height;
-
-        currentIndex: -1;
-
-        model: controlModel;
-        delegate: delegateCom;
-
-        section.property: "type"
-        section.delegate: sectionDelegateCom;
-
-        QML.XScrollbar {
-            target: listView2
-            height: listView2.height;
-            anchors.right: listView2.right;
-        }
+        height: parent.height
     }
 
     ListModel {
@@ -93,6 +85,7 @@ Window {
 
             onClicked: {
                 listView.currentIndex = index;
+                listView.switchToQML(qml)
             }
         }
     }

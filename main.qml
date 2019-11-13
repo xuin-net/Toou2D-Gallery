@@ -85,6 +85,7 @@ Window {
 
             onClicked: {
                 listView.currentIndex = index;
+                windows.title = title;
                 listView.switchToQML(qml)
             }
         }

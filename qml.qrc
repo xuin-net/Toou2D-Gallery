@@ -4,5 +4,7 @@
         <file>qmlList.js</file>
         <file>qml/Basic/Layout.qml</file>
         <file>qml/Basic/Color.qml</file>
+        <file>qml/controls/TGridLayout.qml</file>
+        <file>qml/Basic/Icon.qml</file>
     </qresource>
 </RCC>

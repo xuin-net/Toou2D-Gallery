@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>assets/scrollbar.png</file>
-        <file>qml/controls/TGridLayout.qml</file>
     </qresource>
 </RCC>

@@ -6,7 +6,7 @@ var list = [
                     {qml: "qml/Basic/Container.qml",   title: "Container 布局容器"},
                     {qml: "qml/Basic/Color.qml",       title: "Color 色彩"},
                     {qml: "qml/Basic/Typography.qml",  title: "Typography 字体"},
-                    {qml: "qml/Basic/Border.qml",      title: "Border 边框"},
+                    {qml: "qml/Basic/Shadow.qml",      title: "Shadow 阴影"},
                     {qml: "qml/Basic/Icon.qml",        title: "Icon 图标"},
                     {qml: "qml/Basic/Button.qml",      title: "Button 按钮"},
                     {qml: "qml/Basic/Link.qml",        title: "Link 文字链接"},

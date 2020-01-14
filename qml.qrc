@@ -6,5 +6,9 @@
         <file>qml/Basic/Color.qml</file>
         <file>qml/controls/TGridLayout.qml</file>
         <file>qml/Basic/Icon.qml</file>
+        <file>qml/Basic/Button.qml</file>
+        <file>qml/Basic/Shadow.qml</file>
+        <file>qml/controls/TRectangularGlow.qml</file>
+        <file>qml/Form/Input.qml</file>
     </qresource>
 </RCC>

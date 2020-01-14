@@ -14,7 +14,7 @@ QObject* ReStartApp::initSignal(){
         this->firstrootobj->deleteLater();
     }
     //this->engine->load(QUrl(QStringLiteral("qrc:/com.aiyunji.lpm.app/main.qml")));
-    this->engine->load(QUrl(QStringLiteral("../Toou2D-Gallery/main.qml")));
+    this->engine->load(QUrl(QStringLiteral("../../../../Toou2D-Gallery/main.qml")));
     this->firstrootobj = this->engine->rootObjects().last();
     QObject::connect(this->firstrootobj,SIGNAL(reStartApp()),this,SLOT(appReload()));
     return this->firstrootobj;

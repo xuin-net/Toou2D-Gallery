@@ -3,7 +3,6 @@
 ** Copyright (C) 2019 The TOOU Company Ltd.
 ** Contact: http://www.toou.net/licensing/
 **
-** This file is part of the examples of the Qt Toolkit.
 ** This file is part of the Toou 2d module of the Toou-2D Toolkit.
 **
 ** $TOOU_BEGIN_LICENSE:MIT$
@@ -29,7 +28,6 @@
 ** $TOOU_END_LICENSE$
 **
 ****************************************************************************/
-
 import QtQuick 2.6
 
 Item {

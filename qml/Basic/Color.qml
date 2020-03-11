@@ -8,5 +8,9 @@ Flickable {
         id: contentColumn
         width: parent.width
         spacing: 30
+
+        Rectangle {
+
+        }
     }
 }

@@ -6,5 +6,7 @@
         <file>qml/Basic/Color.qml</file>
         <file>qml/controls/TGridLayout.qml</file>
         <file>qml/Basic/Icon.qml</file>
+        <file>qml/controls/TPagination.qml</file>
+        <file>qml/Data/Pagination.qml</file>
     </qresource>
 </RCC>

@@ -10,5 +10,7 @@
         <file>qml/Basic/Shadow.qml</file>
         <file>qml/controls/TRectangularGlow.qml</file>
         <file>qml/Form/Input.qml</file>
+        <file>qml/Common/TitleLabel.qml</file>
+        <file>qml/Common/IntroLabel.qml</file>
     </qresource>
 </RCC>

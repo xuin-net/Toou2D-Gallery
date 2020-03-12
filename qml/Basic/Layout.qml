@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import "../controls" as Controls
+import "../Common"
 
 Flickable {
     anchors.fill: parent;

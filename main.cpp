@@ -16,12 +16,12 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    ReStartApp *restart = new ReStartApp(&engine);
-    restart->initSignal();
+//    ReStartApp *restart = new ReStartApp(&engine);
+//    restart->initSignal();
 
-//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-//    if (engine.rootObjects().isEmpty())
-//        return -1;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
 
     finish=clock();
     totaltime=(double)(finish-start)/CLOCKS_PER_SEC;

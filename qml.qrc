@@ -8,5 +8,11 @@
         <file>qml/Basic/Icon.qml</file>
         <file>qml/controls/TPagination.qml</file>
         <file>qml/Data/Pagination.qml</file>
+        <file>qml/Basic/Button.qml</file>
+        <file>qml/Basic/Shadow.qml</file>
+        <file>qml/controls/TRectangularGlow.qml</file>
+        <file>qml/Form/Input.qml</file>
+        <file>qml/Common/TitleLabel.qml</file>
+        <file>qml/Common/IntroLabel.qml</file>
     </qresource>
 </RCC>

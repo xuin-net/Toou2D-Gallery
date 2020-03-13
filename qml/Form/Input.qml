@@ -1,7 +1,5 @@
 import QtQuick 2.6
 import "../controls" as Controls
-import Toou2D 1.0
-import "../Common"
 
 Flickable {
     anchors.fill: parent;
@@ -20,9 +18,8 @@ Flickable {
         Controls.TGridLayout {
             anchors.horizontalCenter: parent.horizontalCenter;
             width: parent.width - 80
-            height: 100
             Repeater {
-                model: 10
+                model: 10;
                 delegate: Rectangle {
                     width: 100 + Math.floor(Math.random() * 200)
                     height: 30;

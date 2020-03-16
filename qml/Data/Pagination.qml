@@ -1,4 +1,5 @@
 import QtQuick 2.6
+import Toou2D 1.0
 import "../controls" as Controls
 
 Flickable {
@@ -17,6 +18,10 @@ Flickable {
                 pagination.pageIndex = page
             }
         }
+    }
+
+    TPagination {
+
     }
 
     Component.onCompleted: {

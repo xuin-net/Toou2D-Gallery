@@ -34,378 +34,278 @@ import Toou2D 1.0
 
 Item {
     id: pagination;
-    property var pageArr: []
-    property int curIndex: 0;
-    property int itemCount: 0
-    property int pageIndex: 0;
-    property int factorChange: -1;
-    width: contentRow.width
 
-    signal pageChange(int page)
+    property int current;
 
-    RowLayout {
-        id: contentRow;
-        spacing: 10
-//        LImageButton {
-//            id: previouBtn
-//            Layout.preferredWidth: 14
-//            checkable: curIndex!=1;
-//            imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_Previous_01.png"
-//            checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressed_01.png"
+    property int defaultCurrent: 1;
 
-//            onClicked: {
-//                previouBtn.focus = true;
-//                lastPage();
-//            }
-//        }
+    property int defaultPageSize: 10;
+
+    property int pageSize;
+
+    property bool disabled: false;
+
+    property bool hideOnSinglePage: false;
+
+    //itemRender
+    property var pageSizeOptions: ["10", "20", "30", "40"];
+
+    property bool showLessItems: false;
+
+    property bool showQuickJumper: false;
+
+    property bool showSizeChanger: false;
+
+    property bool simple: false;
+
+    property string size: "";
+
+    property int total: 0
+
+    function showTotal(total, range) {
+
+    }
+
+    signal changed(int page, int pageSize);
+    signal showSizeChanged(int current, int size);
+
+//    current	当前页数	number	-
+//    defaultCurrent	默认的当前页数	number	1
+//    defaultPageSize	默认的每页条数	number	10
+//    disabled	禁用分页	boolean	-
+//    hideOnSinglePage	只有一页时是否隐藏分页器	boolean	false
+//    itemRender	用于自定义页码的结构，可用于优化 SEO	(page, type: 'page' | 'prev' | 'next', originalElement) => React.ReactNode	-
+//    pageSize	每页条数	number	-
+//    pageSizeOptions	指定每页可以显示多少条	string[]	['10', '20', '30', '40']
+//    showLessItems	是否显示较少页面内容	boolean	false
+//    showQuickJumper	是否可以快速跳转至某页	boolean | { goButton: ReactNode }	false
+//    showSizeChanger	是否可以改变 pageSize	boolean	false
+//    showTotal	用于显示数据总量和当前数据顺序	Function(total, range)	-
+//    simple	当添加该属性时，显示为简单分页	boolean	-
+//    size	当为「small」时，是小尺寸分页	string	""
+//    total	数据总数	number	0
+//    onChange	页码改变的回调，参数是改变后的页码及每页条数	Function(page, pageSize)	noop
+//    onShowSizeChange	pageSize 变化的回调	Function(current, size)	noop
+
+    onTotalChanged: initData();
+
+    onPageSizeChanged: initData();
+
+    function initData() {
+        contentRow.pageCount = Math.floor(total/pageSize);
+        var m_numCount = contentRow.pageCount - 2 > 0
+                ? (contentRow.pageCount - 2) : 0
+        contentRow.numArr = []
+        for(var i=0;i<m_numCount;++i) {
+            contentRow.numArr.push(i+2);
+        }
+    }
+
+    Row {
+        id: contentRow
+        spacing: 8;
+        property int factorChange: -1;
+        property var numArr: [];
+        property var pageCount: 0;
 
         TMouseArea {
-            id: previouBtn
-            width: 25;
-            height: 25;
-            TAwesomeIcon {
-                width: 25;
-                height: 25;
-                source: TAwesomeType.FA_angle_double_left;
+            width: 32
+            height: width
+            property bool selected: pressed
+
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.selected ? "#1890FF" : "#FFFFFF"
             }
-            onClicked: {
-                previouBtn.focus = true;
-                lastPage();
+
+            TAwesomeIcon {
+                anchors.centerIn: parent;
+                source: TAwesomeType.FA_angle_left
+                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
             }
         }
 
-//        LPageText {
-//            id: firstDigital
-//            Layout.preferredWidth: contentWidth + 2;
-//            visible: num > 0 ? true : false;
-//            text: String(num)
-//            num: {
-//                factorChange;
-//                return pageArr.length > 0 ? pageArr[0].digital : 0;
-//            }
-//            color: (pressed || pageIndex == num) ? "#00BFB5" : "#848484"
-
-//            onClicked: {
-//                curIndex = num;
-//            }
-//        }
-
         TMouseArea {
-            id: firstDigital
-            Layout.preferredWidth: contentWidth + 2;
+            width: 32;
+            height: 32
             visible: num > 0 ? true : false;
-            property var num: {
-                factorChange;
-                return pageArr.length > 0 ? pageArr[0].digital : 0;
+            property bool selected: (pressed || current == num);
+            property int num: {
+                contentRow.factorChange;
+                return contentRow.numArr.length > 0 ? 1 : 0;
+            }
+
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.selected ? "#1890FF" : "#FFFFFF"
             }
 
             Text {
-                width: contentWidth
-                height: contentHeight
-                font.pixelSize: 18
-                text: String(firstDigital.num);
-                horizontalAlignment: Text.AlignRight
-                color: (firstDigital.checked || pageIndex == firstDigital.num) ? "#00BFB5" : "#848484"
+                anchors.fill: parent;
+                text: String(parent.num)
+                font.pixelSize: 14;
+                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
+
             onClicked: {
-                curIndex = num;
+                current = num;
             }
+        }
+
+        Repeater {
+            model: displayModel;
+            delegate: delegateCom
         }
 
         TMouseArea {
-            visible: {
-                if (displayModel.count > 0) {
-                    if(displayModel.get(0).digital-1 != firstDigital.num) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
+            width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
+            height: 32
+            visible: contentRow.numArr.length > 1 ? true : false;
+            property bool selected: (pressed || current == num);
+            property int num: {
+                contentRow.factorChange;
+                return contentRow.numArr.length > 1 ? contentRow.numArr.length : 0;
             }
-            width: 25;
-            height: 25;
-            TAwesomeIcon {
-                width: 25;
-                height: 25;
-                source: TAwesomeType.FA_angle_left;
+
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.selected ? "#1890FF" : "#FFFFFF"
             }
-            onClicked: {
-                lastPageGroup();
-            }
-        }
-//        LImageButton {
-//            visible: {
-//                if (displayModel.count > 0) {
-//                    if(displayModel.get(0).digital-1 != firstDigital.num) {
-//                        return true;
-//                    } else {
-//                        return false;
-//                    }
-//                } else {
-//                    return false;
-//                }
-//            }
-//            imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_more_02.png"
-//            checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressing_01.png"
-//            onClicked: {
-//                lastPageGroup();
-//            }
-//        }
-
-        ListView {
-            id: numList
-            spacing: 14
-            Layout.preferredHeight: contentHeight;
-            Layout.preferredWidth: contentWidth
-            interactive: false;
-            orientation: ListView.Horizontal
-            model: displayModel
-
-//            delegate: LPageText {
-//                id: pageTextDelegate
-//                text: String(digital)
-//                num: digital;
-//                anchors.verticalCenter: parent.verticalCenter
-//                color: (pressed || pageIndex == digital) ? "#00BFB5" : "#848484"
-//                onClicked: {
-//                    numList.focus = true;
-//                    curIndex = num;
-//                }
-//            }
-            delegate: TMouseArea {
-                id: pageTextDelegate
-                anchors.verticalCenter: parent.verticalCenter
-                property var num: digital;
-
-                Text {
-                    width: contentWidth
-                    height: contentHeight
-                    font.pixelSize: 18
-                    text: String(digital);
-                    horizontalAlignment: Text.AlignRight
-                    color: (pageTextDelegate.checked || pageIndex == digital) ? "#00BFB5" : "#848484"
-                }
-                onClicked: {
-                    numList.focus = true;
-                    curIndex = num;
-                }
-            }
-        }
-
-        TMouseArea {
-            visible: {
-                if (displayModel.count > 0) {
-                    if(displayModel.get(displayModel.count-1).digital+1 != lastDigital.num) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
-            }
-            width: 25;
-            height: 25;
-            TAwesomeIcon {
-                width: 25;
-                height: 25;
-                source: TAwesomeType.FA_angle_double_right;
-            }
-            onClicked: {
-                nextPageGroup();
-            }
-        }
-
-//        LImageButton {
-//            visible: {
-//                if (displayModel.count > 0) {
-//                    if(displayModel.get(displayModel.count-1).digital+1 != lastDigital.num) {
-//                        return true;
-//                    } else {
-//                        return false;
-//                    }
-//                } else {
-//                    return false;
-//                }
-//            }
-//            imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_more_02.png"
-//            checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressing_02.png"
-//            onClicked: {
-//                nextPageGroup();
-//            }
-//        }
-
-//        LPageText {
-//            id: lastDigital
-//            visible: num > 0 ? true : false;
-//            Layout.preferredWidth: contentWidth + 2;
-//            textWidth: contentWidth + 2;
-//            text: String(num);
-//            horizontalAlignment: Text.AlignRight
-//            num: {
-//                factorChange;
-//                return pageArr.length > 1 ? pageArr[pageArr.length-1].digital : 0;
-//            }
-//            color: (pressed || pageIndex == num) ? "#00BFB5" : "#848484"
-
-//            onClicked: {
-//                curIndex = num;
-//            }
-//        }
-        TMouseArea {
-            id: lastDigital
-            visible: num > 0 ? true : false;
-            Layout.preferredWidth: contentWidth + 2;
 
             Text {
-                width: contentWidth + 2
-                height: contentHeight
-                font.pixelSize: 18
-                text: String(lastDigital.num);
-                horizontalAlignment: Text.AlignRight
-                color: (lastDigital.checked || pageIndex == firstDigital.num) ? "#00BFB5" : "#848484"
-            }
-            property var num: {
-                factorChange;
-                return pageArr.length > 1 ? pageArr[pageArr.length-1].digital : 0;
+                id: text;
+                anchors.fill: parent;
+                text: String(parent.num)
+                font.pixelSize: 14;
+                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
 
             onClicked: {
-                curIndex = num;
+                current = num;
             }
         }
-
-//        LImageButton {
-//            id: nextBtn;
-//            Layout.preferredWidth: 14
-//            checkable: curIndex!=pageArr.length;
-//            rotation: 180
-//            imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_Previous_01.png"
-//            checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressed_01.png"
-
-//            onClicked: {
-//                nextBtn.focus = true;
-//                nextPage();
-//            }
-//        }
 
         TMouseArea {
-            id: nextBtn;
-            width: 25;
-            height: 25;
+            width: 32
+            height: width
+
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.pressed ? "#1890FF" : "#FFFFFF"
+            }
+
             TAwesomeIcon {
-                width: 25;
-                height: 25;
-                source: TAwesomeType.FA_angle_right;
+                anchors.centerIn: parent;
+                source: TAwesomeType.FA_angle_right
+                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
             }
-            onClicked: {
-                nextBtn.focus = true;
-                nextPage();
-            }
-        }
-
-        Text {
-            text: qsTr("前往")
-            Layout.preferredWidth: 43
-            font.pixelSize: 18
-            color: "#848484"
-        }
-
-//        LTextEdit {
-//            id: pageEdit;
-//            Layout.preferredHeight: 26
-//            Layout.preferredWidth: 37
-//            leftPadding: 8
-//            bottomPadding: 3
-//            font.pixelSize: 14
-//            verticalAlignment: TextInput.AlignBottom
-//            horizontalAlignment: TextInput.AlignHCenter
-//            validator: IntValidator{bottom: 1; top: 999;}
-//            inputMethodHints: Qt.ImhDigitsOnly
-
-//            onTextChanged: {
-//                seekPage(text);
-//            }
-
-//            onFocusChanged: {
-//                if (focus == false && pageEdit.text == "") {
-//                    pageEdit.text = String(curIndex)
-//                }
-//            }
-//        }
-
-        Text {
-            text: qsTr("页")
-            font.pixelSize: 18
-            color: "#848484"
         }
     }
 
     ListModel {
-        id: displayModel;
+        id: displayModel
     }
 
-//    onPageIndexChanged: {
-//        pageEdit.text = String(curIndex)
-//    }
+    Component {
+        id: delegateCom
+        TMouseArea {
+            width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
+            height: 32
 
-    onCurIndexChanged: {
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.pressed ? "#1890FF" : "#FFFFFF"
+            }
+
+            Text {
+                id: text;
+                anchors.fill: parent;
+                text: String(index);
+                font.pixelSize: 14;
+                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+
+            onClicked: {
+                current = index;
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        pagination.current = defaultCurrent;
+    }
+
+    onCurrentChanged: {
         updatePage();
     }
 
     function updatePage() {
-        if (pageArr.length > 0) {
+        if (contentRow.numArr.length > 0) {
             var i=0
             var count = 0
 
-            pagination.pageChange(curIndex);
-            if (curIndex == 1) {
+            pagination.changed(current,pageSize);
+            if (current == 1) {
                 if (displayModel.count > 0)
                 if (displayModel.count > 0 && displayModel.get(0).digital == 2) {
                     return;
                 }
                 count = 0
                 displayModel.clear()
-                if (pageArr.length > 8) {
+                if (contentRow.numArr.length > 8) {
                     count = 6;
                 } else {
-                    count = pageArr.length - 1;
+                    count = contentRow.numArr.length - 1;
                 }
-                for (i=1;i<count;++i) {
-                    displayModel.append(pageArr[i])
+                for (i=0;i<count;++i) {
+                    displayModel.append({digital: contentRow.numArr[i]})
                 }
-            } else if (curIndex == pageArr.length) {
-                if ((displayModel.count > 0 && displayModel.get(displayModel.count - 1).digital == (curIndex - 1)) || displayModel.count == 0) {
+            } else if (current == contentRow.numArr.length) {
+                if ((displayModel.count > 0 && displayModel.get(displayModel.count - 1).digital == (current - 1)) || displayModel.count == 0) {
                     return;
                 }
                 count = 0
                 displayModel.clear()
-                if (pageArr.length > 8) {
+                if (contentRow.numArr.length > 8) {
                     count = 5;
                 } else {
-                    count = pageArr.length - 2;
+                    count = contentRow.numArr.length - 2;
                 }
-                var totalCount = pageArr.length - 1
+                var totalCount = contentRow.numArr.length - 1
                 for (i=totalCount-count;i<totalCount;++i) {
-                    displayModel.append(pageArr[i])
+                    displayModel.append({digital: contentRow.numArr[i]})
                 }
             } else {
                 for (i=0;i<displayModel.count;++i) {
-                    if (displayModel.get(i).digital == curIndex) {
+                    if (displayModel.get(i).digital == current) {
                         return;
                     }
                 }
                 if (displayModel.count > 0) {
                     var firstDigital = displayModel.get(0).digital;
                     var lastDigital =  displayModel.get(displayModel.count-1).digital
-                    if (curIndex < firstDigital && curIndex > (firstDigital - 5)) {
+                    if (current < firstDigital && current > (firstDigital - 5)) {
                         lastPageGroup(true);
-                    } else if (curIndex > lastDigital && curIndex < (lastDigital + 5)) {
+                    } else if (current > lastDigital && current < (lastDigital + 5)) {
                         nextPageGroup(true);
                     } else {
-                        seekPageGroup(curIndex);
+                        seekPageGroup(current);
                     }
                 }
             }
@@ -421,10 +321,10 @@ Item {
                 if (firstValue<2)
                     firstValue = 2
                 for (var i=0;i<5;++i) {
-                    displayModel.append(pageArr[i+firstValue-1])
+                    displayModel.append({digital: contentRow.numArr[i+firstValue-1]})
                 }
                 if (!_noAutoSetIndex)
-                    curIndex = firstValue + 2
+                    current = firstValue + 2
             }
         }
     }
@@ -432,16 +332,16 @@ Item {
     function nextPageGroup(_noAutoSetIndex) {
         if (displayModel.count > 0) {
             var lastDigital = displayModel.get(displayModel.count-1).digital;
-            if (lastDigital < pageArr.length-1) {
+            if (lastDigital < contentRow.numArr.length-1) {
                 displayModel.clear();
                 var lastValue = lastDigital+5
-                if (lastValue>pageArr.length-1)
-                    lastValue = pageArr.length-1
+                if (lastValue>contentRow.numArr.length-1)
+                    lastValue = contentRow.numArr.length-1
                 for (var i=5;i>0;--i) {
-                    displayModel.append(pageArr[lastValue-i])
+                    displayModel.append({digital: contentRow.numArr[lastValue-i]})
                 }
                 if (!_noAutoSetIndex)
-                    curIndex = lastValue - 2
+                    current = lastValue - 2
             }
         }
     }
@@ -453,71 +353,72 @@ Item {
 
             if (targetFirstDigital < 2) {
                 targetFirstDigital = 2;
-            } else if (targetLastDigital > pageArr.length-1) {
-                targetFirstDigital -= (targetLastDigital-pageArr.length+1)
+            } else if (targetLastDigital > contentRow.numArr.length-1) {
+                targetFirstDigital -= (targetLastDigital-contentRow.numArr.length+1)
             }
 
             displayModel.clear()
 
             for (var i=0;i<5;++i) {
-                displayModel.append(pageArr[targetFirstDigital+i-1])
+                displayModel.append({digital: contentRow.numArr[targetFirstDigital+i-1]})
             }
         }
     }
 
     function lastPage() {
-        if (curIndex > 1)
-            curIndex--;
+        if (current > 1)
+            current--;
     }
 
     function nextPage() {
-        if (curIndex < pageArr.length)
-            curIndex++;
+        if (current < contentRow.numArr.length)
+            current++;
     }
 
     function seekPage(_text) {
         if (_text!="") {
             var targetPage = Number(_text)
-            if (targetPage > pageArr.length) {
-                targetPage = pageArr.length;
+            if (targetPage > contentRow.numArr.length) {
+                targetPage = contentRow.numArr.length;
             } else if (targetPage == 0) {
                 targetPage = 1;
             }
             pageEdit.text = String(targetPage)
-            if (targetPage != curIndex)
-                curIndex = targetPage;
+            if (targetPage != current)
+                current = targetPage;
         }
     }
 
     function init(_count,_index) {
         reset();
+        displayModel.clear()
         for (var i=0;i<_count;++i) {
             var value = {digital: (i+1)}
-            pageArr.push(value);
+            contentRow.numArr.push(value);
         }
         factorChange++;
-        curIndex = _index
+        current = _index
     }
 
     function add() {
-        var value = {digital: pageArr.length+1}
-        pageArr.push(value);
+        var value = {digital: contentRow.numArr.length+1}
+        contentRow.numArr.push(value);
         factorChange ++;
-        curIndex = pageArr.length
+        current = contentRow.numArr.length
     }
 
     function reduce(_noUpdateIndex) {
-        pageArr.pop()
+        contentRow.numArr.pop()
         factorChange ++;
         if (!_noUpdateIndex) {
-            curIndex = pageArr.length
+            current = contentRow.numArr.length
         } else {
             if (displayModel.count > 0) {
                 var lastDigital = displayModel.get(displayModel.count-1).digital
-                if (lastDigital == pageArr.length) {
+                if (lastDigital == contentRow.numArr.length) {
                     displayModel.remove(displayModel.count-1)
                     if (displayModel.count > 0 && displayModel.get(0).digital != 2) {
-                        displayModel.insert(0, pageArr[displayModel.get(0).digital-2])
+                        displayModel.insert(0, contentRow.numArr[displayModel.get(0).digital-2])
                     }
                 }
             }
@@ -525,13 +426,13 @@ Item {
     }
 
     function pageCount() {
-        return pageArr.length;
+        return contentRow.numArr.length;
     }
 
     function reset() {
-        displayModel.clear()
-        pageArr = []
-        curIndex = 0;
+        contentRow.numArr = []
+        current = 0;
         itemCount = 0
+        pageIndex = 0;
     }
 }

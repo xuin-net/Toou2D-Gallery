@@ -3,6 +3,7 @@
 #include <time.h>
 #include <QDebug>
 #include "cpp/restartapp.h"
+#include "cpp/qmlclipboardapter.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,12 +17,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-//    ReStartApp *restart = new ReStartApp(&engine);
-//    restart->initSignal();
+    qmlRegisterType<QmlClipboardAdapter>("Toou_QML_Tools", 1, 0, "LClipboard");
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    ReStartApp *restart = new ReStartApp(&engine);
+    restart->initSignal();
+
+//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+//    if (engine.rootObjects().isEmpty())
+//        return -1;
 
     finish=clock();
     totaltime=(double)(finish-start)/CLOCKS_PER_SEC;

@@ -3,7 +3,7 @@ var list = [
                 name: "Basic",
                 element: [
                     {qml: "qml/Basic/Layout.qml",      title: "Layout 布局"},
-                    {qml: "qml/Basic/Container.qml",   title: "Container 布局容器"},
+                    {qml: "qml/Data/Pagination.qml",   title: "Container 布局容器"},
                     {qml: "qml/Basic/Color.qml",       title: "Color 色彩"},
                     {qml: "qml/Basic/Typography.qml",  title: "Typography 字体"},
                     {qml: "qml/Basic/Shadow.qml",      title: "Shadow 阴影"},

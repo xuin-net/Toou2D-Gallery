@@ -1,8 +1,13 @@
 import QtQuick 2.6
 import Toou2D 1.0
+import Toou_QML_Tools 1.0
 
 Flickable {
     anchors.fill: parent;
+
+    LClipboard {
+        id: clipboard
+    }
 
     GridView {
         id:gview
@@ -15,7 +20,7 @@ Flickable {
 
         model: T2D.awesomelist();
 
-        delegate: Item {
+        delegate: TMouseArea {
             clip: true;
             width: 110;
             height: 60;
@@ -36,6 +41,10 @@ Flickable {
                         text = text.slice(0,10) + "..";
                     }
                 }
+            }
+
+            onClicked: {
+                clipboard.setText(modelData);
             }
         }
     }

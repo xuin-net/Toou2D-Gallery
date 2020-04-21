@@ -108,109 +108,9 @@ Item {
         property var numArr: [];
         property var pageCount: 0;
 
-        TMouseArea {
-            width: 32
-            height: width
-            property bool selected: pressed
-
-            Rectangle {
-                anchors.fill: parent;
-                radius: 2;
-                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                color: parent.selected ? "#1890FF" : "#FFFFFF"
-            }
-
-            TAwesomeIcon {
-                anchors.centerIn: parent;
-                source: TAwesomeType.FA_angle_left
-                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-            }
-        }
-
-        TMouseArea {
-            width: 32;
-            height: 32
-            visible: num > 0 ? true : false;
-            property bool selected: (pressed || current == num);
-            property int num: {
-                contentRow.factorChange;
-                return contentRow.numArr.length > 0 ? 1 : 0;
-            }
-
-            Rectangle {
-                anchors.fill: parent;
-                radius: 2;
-                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                color: parent.selected ? "#1890FF" : "#FFFFFF"
-            }
-
-            Text {
-                anchors.fill: parent;
-                text: String(parent.num)
-                font.pixelSize: 14;
-                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            onClicked: {
-                current = num;
-            }
-        }
-
         Repeater {
             model: displayModel;
             delegate: delegateCom
-        }
-
-        TMouseArea {
-            width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
-            height: 32
-            visible: contentRow.numArr.length > 1 ? true : false;
-            property bool selected: (pressed || current == num);
-            property int num: {
-                contentRow.factorChange;
-                return contentRow.numArr.length > 1 ? contentRow.numArr.length : 0;
-            }
-
-            Rectangle {
-                anchors.fill: parent;
-                radius: 2;
-                border.color: parent.selected ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                color: parent.selected ? "#1890FF" : "#FFFFFF"
-            }
-
-            Text {
-                id: text;
-                anchors.fill: parent;
-                text: String(parent.num)
-                font.pixelSize: 14;
-                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            onClicked: {
-                current = num;
-            }
-        }
-
-        TMouseArea {
-            width: 32
-            height: width
-
-            Rectangle {
-                anchors.fill: parent;
-                radius: 2;
-                border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                color: parent.pressed ? "#1890FF" : "#FFFFFF"
-            }
-
-            TAwesomeIcon {
-                anchors.centerIn: parent;
-                source: TAwesomeType.FA_angle_right
-                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-            }
         }
     }
 
@@ -239,6 +139,12 @@ Item {
                 color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+            }
+
+            TAwesomeIcon {
+                anchors.centerIn: parent;
+                source: TAwesomeType.FA_angle_left //TAwesomeType.FA_angle_right
+                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
             }
 
             onClicked: {

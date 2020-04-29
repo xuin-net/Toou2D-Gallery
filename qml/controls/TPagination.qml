@@ -92,25 +92,65 @@ Item {
     onPageSizeChanged: initData();
 
     function initData() {
-        contentRow.pageCount = Math.floor(total/pageSize);
-        var m_numCount = contentRow.pageCount - 2 > 0
-                ? (contentRow.pageCount - 2) : 0
-        contentRow.numArr = []
-        for(var i=0;i<m_numCount;++i) {
-            contentRow.numArr.push(i+2);
-        }
+//        contentRow.pageCount = Math.floor(total/pageSize);
+//        var m_numCount = contentRow.pageCount - 2 > 0
+//                ? (contentRow.pageCount - 2) : 0
+//        contentRow.numArr = []
+//        for(var i=0;i<m_numCount;++i) {
+//            contentRow.numArr.push(i+2);
+//        }
     }
 
     Row {
         id: contentRow
         spacing: 8;
-        property int factorChange: -1;
-        property var numArr: [];
+
+        property var model: [
+            {type: "LastPage"},
+            {type: "Num",page: 1},
+            {type: "Num",page: 2},
+            {type: "Num",page: 3},
+            {type: "NextPage"}
+        ];
         property var pageCount: 0;
 
         Repeater {
-            model: displayModel;
-            delegate: delegateCom
+            model: contentRow.model;
+            delegate: TMouseArea {
+                width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
+                height: 32
+
+                Rectangle {
+                    anchors.fill: parent;
+                    radius: 2;
+                    border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                    color: parent.pressed ? "#1890FF" : "#FFFFFF"
+                }
+
+                Text {
+                    id: text;
+                    anchors.fill: parent;
+                    visible: text != ""
+                    text: modelData.page ? String(modelData.page) : "";
+                    font.pixelSize: 14;
+                    color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                TAwesomeIcon {
+                    visible: source != ""
+                    anchors.centerIn: parent;
+
+                    source: modelData.type == "LastPage" ?
+                                TAwesomeType.FA_angle_left
+                              : (modelData.type == "NextPage" ? TAwesomeType.FA_angle_right : "")
+                    color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                }
+                onClicked: {
+                    //current = index;
+                }
+            }
         }
     }
 
@@ -118,48 +158,13 @@ Item {
         id: displayModel
     }
 
-    Component {
-        id: delegateCom
-        TMouseArea {
-            width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
-            height: 32
-
-            Rectangle {
-                anchors.fill: parent;
-                radius: 2;
-                border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                color: parent.pressed ? "#1890FF" : "#FFFFFF"
-            }
-
-            Text {
-                id: text;
-                anchors.fill: parent;
-                text: String(index);
-                font.pixelSize: 14;
-                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            TAwesomeIcon {
-                anchors.centerIn: parent;
-                source: TAwesomeType.FA_angle_left //TAwesomeType.FA_angle_right
-                color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-            }
-
-            onClicked: {
-                current = index;
-            }
-        }
-    }
-
     Component.onCompleted: {
         pagination.current = defaultCurrent;
     }
 
-    onCurrentChanged: {
-        updatePage();
-    }
+//    onCurrentChanged: {
+//        updatePage();
+//    }
 
     function updatePage() {
         if (contentRow.numArr.length > 0) {

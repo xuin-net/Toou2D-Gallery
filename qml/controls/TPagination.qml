@@ -91,66 +91,46 @@ Item {
 
     onPageSizeChanged: initData();
 
-    function initData() {
-//        contentRow.pageCount = Math.floor(total/pageSize);
-//        var m_numCount = contentRow.pageCount - 2 > 0
-//                ? (contentRow.pageCount - 2) : 0
-//        contentRow.numArr = []
-//        for(var i=0;i<m_numCount;++i) {
-//            contentRow.numArr.push(i+2);
-//        }
+    function updateData() {
+
+        factorChange++;
+    }
+
+    QtObject {
+        id: paramSet
+
+        property int count;
     }
 
     Row {
         id: contentRow
         spacing: 8;
 
+        TButton {
+            onClicked: {
+                contentRow.model = [
+                            {type: "LastPage"},
+                            {type: "Num",page: 1},
+                            {type: "Num",page: 2},
+                            {type: "Num",page: 3},
+                            {type: "NextPage"}
+                        ];
+            }
+        }
+
         property var model: [
             {type: "LastPage"},
             {type: "Num",page: 1},
             {type: "Num",page: 2},
             {type: "Num",page: 3},
+            {type: "Num",page: 4},
+            {type: "Num",page: 5},
             {type: "NextPage"}
         ];
         property var pageCount: 0;
 
         Repeater {
             model: contentRow.model;
-            delegate: TMouseArea {
-                width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
-                height: 32
-
-                Rectangle {
-                    anchors.fill: parent;
-                    radius: 2;
-                    border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
-                    color: parent.pressed ? "#1890FF" : "#FFFFFF"
-                }
-
-                Text {
-                    id: text;
-                    anchors.fill: parent;
-                    visible: text != ""
-                    text: modelData.page ? String(modelData.page) : "";
-                    font.pixelSize: 14;
-                    color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                TAwesomeIcon {
-                    visible: source != ""
-                    anchors.centerIn: parent;
-
-                    source: modelData.type == "LastPage" ?
-                                TAwesomeType.FA_angle_left
-                              : (modelData.type == "NextPage" ? TAwesomeType.FA_angle_right : "")
-                    color: parent.selected ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
-                }
-                onClicked: {
-                    //current = index;
-                }
-            }
         }
     }
 
@@ -300,16 +280,16 @@ Item {
         }
     }
 
-    function init(_count,_index) {
-        reset();
-        displayModel.clear()
-        for (var i=0;i<_count;++i) {
-            var value = {digital: (i+1)}
-            contentRow.numArr.push(value);
-        }
-        factorChange++;
-        current = _index
-    }
+//    function updateData(_count,_index) {
+//        reset();
+//        displayModel.clear()
+//        for (var i=0;i<_count;++i) {
+//            var value = {digital: (i+1)}
+//            contentRow.numArr.push(value);
+//        }
+//        factorChange++;
+//        current = _index
+//    }
 
     function add() {
         var value = {digital: contentRow.numArr.length+1}
@@ -345,5 +325,45 @@ Item {
         current = 0;
         itemCount = 0
         pageIndex = 0;
+    }
+
+    /*********************Components*********************/
+    Component {
+        id: numCom
+        TMouseArea {
+            width: (text.contentWidth + 16 > 32) ? text.contentWidth + 16 : 32;
+            height: 32
+
+            Rectangle {
+                anchors.fill: parent;
+                radius: 2;
+                border.color: parent.pressed ? "#1890FF": Qt.rgba(0, 0, 0, 0.15)
+                color: parent.pressed ? "#1890FF" : "#FFFFFF"
+            }
+
+            Text {
+                id: text;
+                anchors.fill: parent;
+                visible: text != ""
+                text: modelData.page ? String(modelData.page) : "";
+                font.pixelSize: 14;
+                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+
+            TAwesomeIcon {
+                visible: source != ""
+                anchors.centerIn: parent;
+
+                source: modelData.type == "LastPage" ?
+                            TAwesomeType.FA_angle_left
+                          : (modelData.type == "NextPage" ? TAwesomeType.FA_angle_right : "")
+                color: parent.pressed ? "#FFFFFF" : Qt.rgba(0, 0, 0, 0.65)
+            }
+            onClicked: {
+                //current = index;
+            }
+        }
     }
 }

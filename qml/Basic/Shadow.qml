@@ -12,15 +12,6 @@ Flickable {
         font.pixelSize: 18
     }
 
-    MouseArea {
-        z: 100
-        anchors.fill: parent;
-        onClicked: {
-            console.log("检错");
-            Qt.openUrlExternally("ms-excel:ofv|u|file:///Users/xuin/Documents/test.xlsx");
-        }
-    }
-
     Column {
         id: contentColumn
         y: 60

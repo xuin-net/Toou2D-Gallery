@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import "../controls" as Controls
-import Toou2D 1.0
 import "../Common"
 
 Flickable {
@@ -54,7 +53,7 @@ Flickable {
         }
 
         Text {
-            text: qsTr("混和布局-中部对齐")
+            text: qsTr("混和布局-居中对齐")
             leftPadding: 20;
             topPadding: 20;
             color: "#303133"
@@ -97,5 +96,4 @@ Flickable {
             }
         }
     }
-
 }

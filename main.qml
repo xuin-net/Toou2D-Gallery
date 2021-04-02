@@ -1,9 +1,7 @@
 import QtQuick 2.6
 //import QtQuick.Controls 2.5
 import QtQuick.Window 2.2
-import Toou2D 1.0
 import "./qmlList.js" as QMLList
-import "./qml" as QML
 
 Window {
     id: windows
@@ -31,14 +29,11 @@ Window {
         section.property: "type"
         section.delegate: sectionDelegateCom;
 
-        TScrollbarV {
-            target: listView
+        Rectangle {
+            anchors.right: parent.right
+            width: 1;
             height: listView.height;
-            anchors.right: listView.right;
-        }
-
-        function switchToQML(_src) {
-            contentLoader.source = _src;
+            color: "#4d4d4d";
         }
     }
 
@@ -51,6 +46,13 @@ Window {
 
     ListModel {
         id: controlModel
+    }
+
+    Text {
+        text: qsTr("Coming soon!")
+        font.pixelSize: 28
+        anchors.centerIn: contentLoader;
+        visible: contentLoader.status == Loader.Ready ? false : true
     }
 
     Component {
@@ -84,14 +86,23 @@ Window {
             }
 
             onClicked: {
-                listView.currentIndex = index;
-                windows.title = title;
-                listView.switchToQML(qml)
+                windows.switchToQML(qml, title, index);
             }
         }
     }
 
     Component.onCompleted: {
+        windows.initListData();
+    }
+
+    /*##############Funtion################*/
+    function switchToQML(_src, _title, _index) {
+        contentLoader.source = _src;
+        listView.currentIndex = _index;
+        windows.title = _title;
+    }
+
+    function initListData() {
         for (var i=0;i<QMLList.list.length;++i) {
             var type = QMLList.list[i].name;
             var elements = QMLList.list[i].element;
@@ -100,4 +111,5 @@ Window {
             }
         }
     }
+    /*##############Funtion################*/
 }

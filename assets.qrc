@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>assets/scrollbar.png</file>
+        <file>assets/Icon/Icon_Connect_01.png</file>
+        <file>assets/Icon/Icon_Input_01.png</file>
+        <file>assets/Icon/Icon_Successful_28_28_01.png</file>
+        <file>assets/Icon/Icon_Error_20_20_01.png</file>
+        <file>assets/Icon/Icon_message_error.png</file>
+        <file>assets/Icon/Icon_Successful_20_20_01.png</file>
+        <file>assets/Icon/Icon_New_01.png</file>
+        <file>assets/maskRectangle.png</file>
     </qresource>
 </RCC>

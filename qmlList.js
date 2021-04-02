@@ -1,9 +1,24 @@
 var list = [
             {
+                name: "MyCustoms",
+                element: [
+                    {qml: "qml/Customs/IpInput.qml",            title: "IP地址输入框"},
+                    {qml: "qml/Customs/AlertMessage.qml",       title: "AlertMessage 消息盒子"},
+                    {qml: "qml/Customs/NotifyManagement.qml",   title: "Notify 消息盒子"},
+                    {qml: "qml/Customs/CircularMask.qml",       title: "Circular 圆圈蒙版入场"},
+                    {qml: "qml/Customs/GenieEffect.qml",        title: "GenieEffect 精灵入场"},
+                    {qml: "qml/Customs/Crumbs.qml",             title: "Crumbs 面包屑"},
+                    {qml: "qml/Customs/DataPicker.qml",         title: "DataPicker 日期选择器"},
+                    {qml: "qml/Customs/Pagination.qml",         title: "Pagination 分页"},
+                    {qml: "qml/Customs/Popover.qml",            title: "Popover 动态弹窗"},
+                    {qml: "qml/Customs/TwoFingerMouseArea.qml", title: "TwoFingerMouseArea 双指双击触控"},
+                ]
+            },
+            {
                 name: "Basic",
                 element: [
                     {qml: "qml/Basic/Layout.qml",      title: "Layout 布局"},
-                    {qml: "qml/Data/Pagination.qml",   title: "Container 布局容器"},
+                    {qml: "qml/Basic/Container.qml",   title: "Container 布局容器"},
                     {qml: "qml/Basic/Color.qml",       title: "Color 色彩"},
                     {qml: "qml/Basic/Typography.qml",  title: "Typography 字体"},
                     {qml: "qml/Basic/Shadow.qml",      title: "Shadow 阴影"},

@@ -11,8 +11,35 @@
         <file>qml/Basic/Button.qml</file>
         <file>qml/Basic/Shadow.qml</file>
         <file>qml/controls/TRectangularGlow.qml</file>
-        <file>qml/Form/Input.qml</file>
         <file>qml/Common/TitleLabel.qml</file>
         <file>qml/Common/IntroLabel.qml</file>
+        <file>qml/controls/TAddressInput.qml</file>
+        <file>qml/controls/TBusyIndicator.qml</file>
+        <file>qml/controls/TButton.qml</file>
+        <file>qml/Customs/IpInput.qml</file>
+        <file>qml/controls/TAlertMessage.qml</file>
+        <file>qml/Customs/AlertMessage.qml</file>
+        <file>qml/controls/LPagination.qml</file>
+        <file>qml/controls/TCaseListEntranceBtn.qml</file>
+        <file>qml/controls/TComboBox.qml</file>
+        <file>qml/controls/TCrumbs.qml</file>
+        <file>qml/controls/TDataPicker.qml</file>
+        <file>qml/controls/TGenieEffect.qml</file>
+        <file>qml/controls/TPageText.qml</file>
+        <file>qml/controls/TPopover.qml</file>
+        <file>qml/controls/TPopup.qml</file>
+        <file>qml/controls/TTabButton.qml</file>
+        <file>qml/controls/TTwoFingerMouseArea.qml</file>
+        <file>qml/Customs/CircularEntrance.qml</file>
+        <file>qml/Customs/Crumbs.qml</file>
+        <file>qml/Customs/DataPicker.qml</file>
+        <file>qml/Customs/GenieEffect.qml</file>
+        <file>qml/Customs/Pagination.qml</file>
+        <file>qml/Customs/Popover.qml</file>
+        <file>qml/Customs/TwoFingerMouseArea.qml</file>
+        <file>qml/controls/TNotifyManagement.qml</file>
+        <file>qml/Customs/NotifyManagement.qml</file>
+        <file>qml/Customs/CircularMask.qml</file>
+        <file>qml/controls/TCircularMask.qml</file>
     </qresource>
 </RCC>

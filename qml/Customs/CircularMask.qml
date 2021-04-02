@@ -5,6 +5,8 @@ Item {
     anchors.fill: parent;
 
     Controls.TButton {
+        id: enterBtn;
+        x: 30;y: 30
         font.pixelSize: 20;
         baseColor: "#00BFB5"
         textColor: "#FFFFFF";
@@ -13,7 +15,8 @@ Item {
         text: qsTr("入口")
 
         onClicked: {
-            mask.enter(Qt.point(0, 0));
+            mask.enter(Qt.point(enterBtn.x+enterBtn.width/2,
+                                enterBtn.y+enterBtn.height/2));
         }
     }
 
@@ -27,8 +30,12 @@ Item {
         }
 
         Controls.TButton {
+            id: exitBtn
             anchors.right: parent.right
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: 30
+            anchors.rightMargin: 30
+
             font.pixelSize: 20;
             baseColor: "#00BFB5"
             textColor: "#FFFFFF";
@@ -37,7 +44,8 @@ Item {
             text: qsTr("出口")
 
             onClicked: {
-                mask.exit(Qt.point(0, 0));
+                mask.exit(Qt.point(exitBtn.x+exitBtn.width/2,
+                                   exitBtn.y+exitBtn.height/2));
             }
         }
     }

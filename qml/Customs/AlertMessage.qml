@@ -6,11 +6,6 @@ Item {
 
     Controls.TAlertMessage {
         id: alertMessage
-
-        Rectangle {
-            anchors.fill: parent
-            color: "SkyBlue"
-        }
     }
 
     Controls.TButton {

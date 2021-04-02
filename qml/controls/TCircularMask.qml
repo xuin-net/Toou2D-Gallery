@@ -5,6 +5,8 @@ MouseArea {
     id: control
     enabled: false;
 
+    property int duration: 480;
+
     // 动画结束后发射
     signal showAniFinish();
     // 动画结束后发射
@@ -33,6 +35,9 @@ MouseArea {
         Image {
             id: img
             scale: 0.0
+            width: parent.width
+            height: parent.height
+            fillMode: Image.PreserveAspectFit
             source: "qrc:/assets/maskRectangle.png"
         }
 
@@ -42,18 +47,18 @@ MouseArea {
             ParallelAnimation {
                 PathAnimation {
                     path: Path {
-                        startX: -960 + enterAni.offsetPoint.x
-                        startY: -540 + enterAni.offsetPoint.y
+                        startX: -control.width/2 + enterAni.offsetPoint.x
+                        startY: -control.height/2 + enterAni.offsetPoint.y
                         PathLine { x: 0; y: 0}
                     }
                     target: img
-                    duration: 480
+                    duration: control.duration
                     easing.type: Easing.OutCubic
                 }
 
                 NumberAnimation{
                     target: img;property: "scale"
-                    from: 0.0;to: 2.2;duration: 480
+                    from: 0.0;to: 2.2;duration: control.duration
                     easing.type: Easing.OutCubic
                 }
             }
@@ -62,7 +67,7 @@ MouseArea {
 
         SequentialAnimation {
             id: exitAni;
-            property point exitPosition: Qt.point(-960, -540)
+            property point exitPosition: Qt.point(-control.width/2, -control.height/2)
             ParallelAnimation {
                 PathAnimation {
                     path: Path {
@@ -72,13 +77,13 @@ MouseArea {
                         }
                     }
                     target: img
-                    duration: 480
+                    duration: control.duration
                     easing.type: Easing.OutCubic
                 }
 
                 NumberAnimation{
                     target: img;property: "scale"
-                    from: 2.2;to: 0.0;duration: 480
+                    from: 2.2;to: 0.0;duration: control.duration
                     easing.type: Easing.OutCubic
                 }
             }

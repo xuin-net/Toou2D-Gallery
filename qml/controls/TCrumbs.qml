@@ -1,5 +1,5 @@
-﻿import QtQuick 2.12
-import QtQuick.Layouts 1.12
+﻿import QtQuick 2.6
+import QtQuick.Layouts 1.0
 
 RowLayout {
     id: layout
@@ -36,7 +36,7 @@ RowLayout {
             }
             Image {
                 visible: index < (layout.model.length-1)
-                source: "qrc:/com.aiyunji.lpm.res/resource/Icon/icon_calendar_next.png"
+                source: "qrc:/assets/Icon/Icon_Next.png"
             }
         }
     }

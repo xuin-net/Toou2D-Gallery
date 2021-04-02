@@ -27,6 +27,12 @@ Item {
         Rectangle {
             anchors.fill: parent;
             color: "skyBlue"
+            Text {
+                anchors.centerIn: parent;
+                font.pixelSize: 20
+                color: "#fff"
+                text: qsTr("这里显示主体内容")
+            }
         }
 
         Controls.TButton {

@@ -21,7 +21,8 @@ MouseArea {
 
     function exit(_exitPos) {
         control.enabled = false;
-        exitAni.exitPosition = _exitPos;
+        exitAni.exitPosition = Qt.point(_exitPos.x - control.width/2,
+                                        _exitPos.y - control.height/2);
         exitAni.start();
     }
     /*###########Function###########*/
@@ -72,8 +73,8 @@ MouseArea {
                 PathAnimation {
                     path: Path {
                         startX: 0; startY: 0
-                        PathLine { x: exitAni.exitPosition.x+35
-                                   y: exitAni.exitPosition.y+30
+                        PathLine { x: exitAni.exitPosition.x
+                                   y: exitAni.exitPosition.y
                         }
                     }
                     target: img

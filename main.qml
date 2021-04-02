@@ -49,7 +49,8 @@ Window {
     }
 
     Text {
-        text: qsTr("Coming soon!")
+        text: contentLoader.status != Loader.Null ? qsTr("Coming soon!")
+                                                  : qsTr("Please select a control")
         font.pixelSize: 28
         anchors.centerIn: contentLoader;
         visible: contentLoader.status == Loader.Ready ? false : true

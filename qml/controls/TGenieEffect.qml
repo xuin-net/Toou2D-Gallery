@@ -1,19 +1,39 @@
-import QtQuick 2.12
+import QtQuick 2.6
 
 ShaderEffect {
     id: genieEffect
-    property variant source
     property real minimize: 1.0
     property real bend: 1.0
-    property bool minimized: true
+    // 控制起始点的占宽度的比例
     property real side: 1.0
+    // 收起时顶端保持的宽度比例[1.0-以点形状离场/0.0-保持宽度离场]
+    property real minSide: 0.99
+
+    property bool minimized: true
+
+    property bool firstLoader: true;
+
+    property alias imgSrc: img.source
+
+    property variant source: Image {
+        id: img
+        visible: false
+        onStatusChanged: {
+            if (genieEffect.firstLoader && status == Image.Ready) {
+                genieEffect.firstLoader = false;
+                minimized = false;
+            }
+        }
+    }
+
     signal normalizeAniFinish();
 
     mesh: GridMesh { resolution: Qt.size(16, 16) }
 
     ParallelAnimation {
         id: animMinimize
-        running: genieEffect.minimized
+        running: !genieEffect.firstLoader && genieEffect.minimized
+
         SequentialAnimation {
             PauseAnimation { duration: 120 }
             UniformAnimator {
@@ -31,7 +51,7 @@ ShaderEffect {
                 target: genieEffect
                 uniform: "bend"
                 from: 0
-                to: 0.97
+                to: minSide
                 duration: 280
                 easing.type: Easing.InOutSine
             }
@@ -86,4 +106,14 @@ ShaderEffect {
             pos.x = mix(qt_Vertex.x, side * width, t * bend);
             gl_Position = qt_Matrix * pos;
         }"
+
+    /*################Function###############*/
+    function open() {
+        minimized = false
+    }
+
+    function close() {
+        minimized = true
+    }
+    /*################Function###############*/
 }

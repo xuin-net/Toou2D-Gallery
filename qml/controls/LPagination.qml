@@ -25,8 +25,8 @@ Item {
                 mouseAreaWidth: 64
                 Layout.preferredWidth: 14
                 checkable: curIndex!=1;
-                imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_Previous_01.png"
-                checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressed_01.png"
+                imgSrc: "qrc:/assets/Icon/Icon_Previous_01.png"
+                checkImgSrc: "qrc:/assets/Icon/Pressed/Icon_Previous_Pressed_01.png"
                 onClicked: {
                     previouBtn.focus = true;
                     lastPage();
@@ -68,8 +68,8 @@ Item {
                         return false;
                     }
                 }
-                imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_more_02.png"
-                checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressing_01.png"
+                imgSrc: "qrc:/assets/Icon/Icon_more_02.png"
+                checkImgSrc: "qrc:/assets/Icon/Pressed/Icon_Previous_Pressing_01.png"
                 onClicked: {
                     lastPageGroup();
                 }
@@ -117,8 +117,8 @@ Item {
                         return false;
                     }
                 }
-                imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_more_02.png"
-                checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressing_02.png"
+                imgSrc: "qrc:/assets/Icon/Icon_more_02.png"
+                checkImgSrc: "qrc:/assets/Icon/Pressed/Icon_Previous_Pressing_02.png"
                 onClicked: {
                     nextPageGroup();
                 }
@@ -153,8 +153,8 @@ Item {
                 Layout.preferredWidth: 14
                 checkable: curIndex!=pageArr.length;
                 rotation: 180
-                imgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Icon_Previous_01.png"
-                checkImgSrc: "qrc:/com.aiyunji.lpm.res/resource/Icon/Pressed/Icon_Previous_Pressed_01.png"
+                imgSrc: "qrc:/assets/Icon/Icon_Previous_01.png"
+                checkImgSrc: "qrc:/assets/Icon/Pressed/Icon_Previous_Pressed_01.png"
 
                 onClicked: {
                     nextBtn.focus = true;

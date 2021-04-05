@@ -11,5 +11,15 @@
         <file>assets/maskRectangle.png</file>
         <file>assets/pic-todaybing-hd-5EwjDtWR.jpeg</file>
         <file>assets/Icon/Icon_Next.png</file>
+        <file>assets/Icon/Icon_calendar_previousmonth_disable.png</file>
+        <file>assets/Icon/Icon_calendar_previousmonth.png</file>
+        <file>assets/Icon/Icon_calendar_previousyear_disable.png</file>
+        <file>assets/Icon/Icon_calendar_previousyear.png</file>
+        <file>assets/Icon/Icon_datepicker_date.png</file>
+        <file>assets/Icon/Icon_datepicker_delete.png</file>
+        <file>assets/Icon/Icon_calendar_nextmonth_disable.png</file>
+        <file>assets/Icon/Icon_calendar_nextmonth.png</file>
+        <file>assets/Icon/Icon_calendar_nextyear_disable.png</file>
+        <file>assets/Icon/Icon_calendar_nextyear.png</file>
     </qresource>
 </RCC>

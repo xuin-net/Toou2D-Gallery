@@ -8,10 +8,8 @@ var list = [
                     {qml: "qml/Customs/CircularMask.qml",       title: "Circular 圆圈蒙版入场"},
                     {qml: "qml/Customs/GenieEffect.qml",        title: "GenieEffect 精灵入场"},
                     {qml: "qml/Customs/Crumbs.qml",             title: "Crumbs 面包屑"},
-                    {qml: "qml/Customs/DataPicker.qml",         title: "DataPicker 日期选择器"},
-                    {qml: "qml/Customs/Pagination.qml",         title: "Pagination 分页"},
-                    {qml: "qml/Customs/Popover.qml",            title: "Popover 动态弹窗"},
-                    {qml: "qml/Customs/TwoFingerMouseArea.qml", title: "TwoFingerMouseArea 双指双击触控"},
+                    {qml: "qml/Customs/DatePicker.qml",         title: "DataPicker 日期选择器"},
+                    {qml: "qml/Customs/TwoFingerMouseArea.qml", title: "双指双击触控"},
                 ]
             },
             {

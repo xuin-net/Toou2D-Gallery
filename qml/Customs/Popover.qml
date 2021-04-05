@@ -1,10 +1,6 @@
 import QtQuick 2.6
+import "../controls" as Controls
 
-Flickable {
+Item {
     anchors.fill: parent;
-    contentHeight: contentColumn.implicitHeight
-
-    Column {
-        id: contentColumn
-    }
 }

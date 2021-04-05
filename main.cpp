@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <time.h>
 #include <QDebug>
 #include "cpp/restartapp.h"
@@ -20,7 +21,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<QmlClipboardAdapter>("Toou_QML_Tools", 1, 0, "LClipboard");
 
     ReStartApp *restart = new ReStartApp(&engine);
-    restart->initSignal();
+
+
+    engine.rootContext()->setContextProperty("_root_window_", restart->initSignal());
 
 //    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 //    if (engine.rootObjects().isEmpty())

@@ -23,7 +23,6 @@
         <file>qml/controls/TCaseListEntranceBtn.qml</file>
         <file>qml/controls/TComboBox.qml</file>
         <file>qml/controls/TCrumbs.qml</file>
-        <file>qml/controls/TDataPicker.qml</file>
         <file>qml/controls/TGenieEffect.qml</file>
         <file>qml/controls/TPageText.qml</file>
         <file>qml/controls/TPopover.qml</file>
@@ -32,7 +31,6 @@
         <file>qml/controls/TTwoFingerMouseArea.qml</file>
         <file>qml/Customs/CircularEntrance.qml</file>
         <file>qml/Customs/Crumbs.qml</file>
-        <file>qml/Customs/DataPicker.qml</file>
         <file>qml/Customs/GenieEffect.qml</file>
         <file>qml/Customs/Pagination.qml</file>
         <file>qml/Customs/Popover.qml</file>
@@ -41,5 +39,8 @@
         <file>qml/Customs/NotifyManagement.qml</file>
         <file>qml/Customs/CircularMask.qml</file>
         <file>qml/controls/TCircularMask.qml</file>
+        <file>qml/controls/TDatePicker.qml</file>
+        <file>qml/controls/TImageButton.qml</file>
+        <file>qml/Customs/DatePicker.qml</file>
     </qresource>
 </RCC>

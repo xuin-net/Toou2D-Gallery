@@ -15,6 +15,7 @@ MouseArea {
     /*###########Function###########*/
     function enter(_enterPoint) {
         control.enabled = true;
+        control.visible = true;
         enterAni.offsetPoint = _enterPoint;
         enterAni.start();
     }
@@ -88,7 +89,10 @@ MouseArea {
                     easing.type: Easing.OutCubic
                 }
             }
-            ScriptAction{script: {control.destoryAniFinish()}}
+            ScriptAction{script: {
+                    control.destoryAniFinish();
+                    control.visible = false;
+                }}
         }
     }
 

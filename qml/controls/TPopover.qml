@@ -1,7 +1,7 @@
-import QtQuick 2.12
-import QtGraphicalEffects 1.12
+import QtQuick 2.6
+import QtGraphicalEffects 1.0
 
-LPopup {
+TPopup {
     id: popover
 
     property alias mainLabelText: mainLabel.text;
@@ -50,7 +50,7 @@ LPopup {
                 anchors.right: parent.right
                 anchors.margins: 24
                 spacing: 14
-                LImageButton {
+                TImageButton {
                     id: cancelBtn
                     visible: (errorType != "authError" && errorType != "unknowError")
                              ? true : false;
@@ -62,7 +62,7 @@ LPopup {
                     }
                 }
 
-                LImageButton {
+                TImageButton {
                     id: sumitBtn
                     visible: (errorType != "authError" && errorType != "unknowError")
                              ? true : false;
@@ -74,7 +74,7 @@ LPopup {
                     }
                 }
 
-                LImageButton {
+                TImageButton {
                     id: retryBtn
                     visible: (errorType == "authError" || errorType == "unknowError") ? true : false;
                     imgSrc: "qrc:/com.aiyunji.lpm.res/Fail506_btn_01.png"

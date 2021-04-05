@@ -1,9 +1,12 @@
-import QtQuick 2.12
+import QtQuick 2.6
 
 MultiPointTouchArea {
     id: area
+    // 动作：双指双击
     signal doubleClicked();
+    // 动作：单指点击
     signal singleClicked();
+    // 手势：单指向上滑动
     signal singleUpFlick();
 
     touchPoints: [

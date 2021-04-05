@@ -1,4 +1,4 @@
-﻿import QtQuick 2.12
+﻿import QtQuick 2.6
 
 QtObject{
     id: popup
@@ -66,10 +66,10 @@ QtObject{
 
         property list<QtObject> childs;
         property var layout: null;
+
         function create(){
             if(!layout){
-                var parentWindows = typeof(__root_window__) == "object" ? __root_window__ : __splash_window__
-                layout = popup.layoutComponent.createObject(parentWindows);
+                layout = popup.layoutComponent.createObject(_root_window_);
                 layout.z = 99999;
             }
             if (typeof(layout.show) == "function") {

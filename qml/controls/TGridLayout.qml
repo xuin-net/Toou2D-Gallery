@@ -1,37 +1,7 @@
-/****************************************************************************
-**
-** Copyright (C) 2019 The TOOU Company Ltd.
-** Contact: http://www.toou.net/licensing/
-**
-** This file is part of the Toou 2d module of the Toou-2D Toolkit.
-**
-** $TOOU_BEGIN_LICENSE:MIT$
-**
-** Permission is hereby granted, free of charge, to any person obtaining a copy
-** of this software and associated documentation files (the "Software"), to deal
-** in the Software without restriction, including without limitation the rights
-** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-** copies of the Software, and to permit persons to whom the Software is
-** furnished to do so, subject to the following conditions:
-**
-** The above copyright notice and this permission notice shall be included in all
-** copies or substantial portions of the Software.
-**
-** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-** AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-** LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-** OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-** SOFTWARE.
-**
-** $TOOU_END_LICENSE$
-**
-****************************************************************************/
 import QtQuick 2.6
 
 Item {
-    id: toou2d_gridlayout
+    id: lGridlayout
     width: parent.width
     height: childrenRect.height
 
@@ -41,14 +11,19 @@ Item {
 
     property int  columns: 1;
 
+    property int  offsetX: 0
+
     // Grid.AlignTop/Grid.AlignVCenter/Grid.AlignBottom
     property int  verticalItemAlignment: Grid.AlignTop
 
+    // Grid.AlignLeft/Grid.AlignHCenter/Grid.AlignRight
+    property int  horizontalItemAlignment: Grid.AlignLeft
+
     function updateLayout() {
-        if (!toou2d_gridlayout)
+        if (!lGridlayout)
             return;
-        var childrens = toou2d_gridlayout.children;
-        var datas = toou2d_gridlayout.data;
+        var childrens = lGridlayout.children;
+        var datas = lGridlayout.data;
 
         columns = 1;
         var rowMaxHeight = 0;
@@ -58,10 +33,11 @@ Item {
             var curItem = childrens[i];
 
             var targetX = (i == 0) ?
-                        0 : (childrens[i-1].x + childrens[i-1].width
-                             + (curItem.width > 0 ? toou2d_gridlayout.rowSpacing : 0))
-            if((targetX + curItem.width + toou2d_gridlayout.rowSpacing) > toou2d_gridlayout.width){
+                        offsetX : (childrens[i-1].x + childrens[i-1].width
+                             + (curItem.width > 0 ? lGridlayout.rowSpacing : 0))
+            if((targetX + curItem.width + lGridlayout.rowSpacing) > lGridlayout.width){
                 // new line
+                offsetLine(lineIndexArr);
                 lineMaxHeight += rowMaxHeight + columnSpacing;
                 columns++;
                 rowMaxHeight = 0;
@@ -96,14 +72,31 @@ Item {
             }
             lineIndexArr.push(i);
         }
+        offsetLine(lineIndexArr)
+    }
+
+    function offsetLine(lineIndexArr) {
+        if (horizontalItemAlignment != Grid.AlignLeft) {
+            var childrens = lGridlayout.children;
+            var lineOffsetX = 0;
+            var lastLineItem = childrens[lineIndexArr[lineIndexArr.length - 1]]
+            lineOffsetX = lGridlayout.width - (lastLineItem.x + lastLineItem.width);
+            if (horizontalItemAlignment == Grid.AlignHCenter) {
+                lineOffsetX /= 2;
+            }
+            for (var j=0;j<lineIndexArr.length;++j) {
+                var itemAtLastLine = childrens[lineIndexArr[j]];
+                itemAtLastLine.x += lineOffsetX
+            }
+        }
     }
 
     Component.onCompleted: {
         updateLayout();
-        toou2d_gridlayout.childrenChanged.connect(updateLayout);
+        lGridlayout.childrenChanged.connect(updateLayout);
     }
 
     Component.onDestruction: {
-        toou2d_gridlayout.childrenChanged.disconnect(updateLayout);
+        lGridlayout.childrenChanged.disconnect(updateLayout);
     }
 }

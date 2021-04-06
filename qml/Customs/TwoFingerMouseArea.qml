@@ -14,11 +14,11 @@ Item {
     Controls.TTwoFingerMouseArea {
         anchors.fill: parent;
         onSingleClicked: {
-            warnTxt.text = qsTr("你刚才操作了单指单击")
+            warnTxt.text = qsTr("您刚才操作了单指单击")
         }
 
         onDoubleClicked: {
-            warnTxt.text = qsTr("你刚才操作了双指双击")
+            warnTxt.text = qsTr("您刚才操作了双指双击")
         }
     }
 }

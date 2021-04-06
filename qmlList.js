@@ -10,6 +10,7 @@ var list = [
                     {qml: "qml/Customs/Crumbs.qml",             title: "Crumbs 面包屑"},
                     {qml: "qml/Customs/DatePicker.qml",         title: "DataPicker 日期选择器"},
                     {qml: "qml/Customs/TwoFingerMouseArea.qml", title: "双指双击触控"},
+                    {qml: "qml/Customs/TreeListView.qml",       title: "多级列表"},
                 ]
             },
             {

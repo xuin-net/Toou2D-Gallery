@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>icon_moreopen_16*16</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2.03列表-默认选中最后一次的月份" transform="translate(-112.000000, -242.000000)">
+            <g id="Main-Info/1" transform="translate(0.000000, 158.000000)">
+                <g id="List/时间/时间区域">
+                    <g id="月份/已选中复制-2" transform="translate(0.000000, 58.000000)">
+                        <g id="编组-3" transform="translate(69.000000, 20.000000)">
+                            <g id="Icon/icon_moreopen_16*16" transform="translate(41.000000, 1.000000)">
+                                <g id="icon_moreopen_16*16" transform="translate(7.700000, 8.300000) scale(1, -1) translate(-7.700000, -8.300000) translate(-0.800000, -0.200000)">
+                                    <rect fill="#FFFFFF" opacity="0" x="0.8" y="0.8" width="16" height="16"></rect>
+                                    <path d="M13.5974065,6.37524324 C13.5974065,6.46864865 13.5631393,6.56309189 13.494605,6.6347027 L9.04843712,11.2842162 C8.91136837,11.4274378 8.68863163,11.4274378 8.55156288,11.2842162 L4.10539503,6.6347027 C3.96832627,6.49148108 3.96832627,6.25900541 4.10539503,6.11578378 C4.24246379,5.97256216 4.46520052,5.97256216 4.60226928,6.11578378 L8.8,10.5058378 L12.9977307,6.11578378 C13.1347995,5.97256216 13.3575362,5.97256216 13.494605,6.11578378 C13.5631393,6.18739459 13.5974065,6.28183784 13.5974065,6.37524324 Z" id="路径" stroke="#C0C4CC" fill="#C0C4CC" fill-rule="nonzero"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

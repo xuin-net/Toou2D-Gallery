@@ -13,7 +13,13 @@ Item {
         model: [qsTr("典型超声图"), qsTr("病例解剖图"), qsTr("动态视频")]
 
         onClickItem: {
-            console.log("点击级别：", index);
+            warnTxt.text = qsTr("点击级数：" + String(index))
         }
+    }
+
+    Text {
+        id: warnTxt
+        font.pixelSize: 20
+        anchors.centerIn: parent;
     }
 }

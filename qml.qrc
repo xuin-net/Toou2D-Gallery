@@ -19,7 +19,6 @@
         <file>qml/Customs/IpInput.qml</file>
         <file>qml/controls/TAlertMessage.qml</file>
         <file>qml/Customs/AlertMessage.qml</file>
-        <file>qml/controls/LPagination.qml</file>
         <file>qml/controls/TCaseListEntranceBtn.qml</file>
         <file>qml/controls/TComboBox.qml</file>
         <file>qml/controls/TCrumbs.qml</file>
@@ -29,11 +28,8 @@
         <file>qml/controls/TPopup.qml</file>
         <file>qml/controls/TTabButton.qml</file>
         <file>qml/controls/TTwoFingerMouseArea.qml</file>
-        <file>qml/Customs/CircularEntrance.qml</file>
         <file>qml/Customs/Crumbs.qml</file>
         <file>qml/Customs/GenieEffect.qml</file>
-        <file>qml/Customs/Pagination.qml</file>
-        <file>qml/Customs/Popover.qml</file>
         <file>qml/Customs/TwoFingerMouseArea.qml</file>
         <file>qml/controls/TNotifyManagement.qml</file>
         <file>qml/Customs/NotifyManagement.qml</file>
@@ -42,5 +38,8 @@
         <file>qml/controls/TDatePicker.qml</file>
         <file>qml/controls/TImageButton.qml</file>
         <file>qml/Customs/DatePicker.qml</file>
+        <file>qml/controls/TTreeList.qml</file>
+        <file>qml/Customs/TreeListView.qml</file>
+        <file>qml/controls/TSVGIcon.qml</file>
     </qresource>
 </RCC>

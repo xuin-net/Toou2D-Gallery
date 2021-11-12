@@ -30,7 +30,7 @@ TPopup {
                     anchors.right: parent.right;
                     anchors.rightMargin: 16
                     anchors.verticalCenter: parent.verticalCenter
-                    source: "qrc:/com.aiyunji.lpm.res/UKFault404_btn_03.png"
+                    source: "qrc:/net.xuin.lpm.res/UKFault404_btn_03.png"
                 }
 
                 MouseArea {
@@ -54,8 +54,8 @@ TPopup {
                     id: cancelBtn
                     visible: (errorType != "authError" && errorType != "unknowError")
                              ? true : false;
-                    imgSrc: "qrc:/com.aiyunji.lpm.res/UKFault404_btn_04.png"
-                    checkImgSrc: "qrc:/com.aiyunji.lpm.res/UKFault404_btn_06.png"
+                    imgSrc: "qrc:/net.xuin.lpm.res/UKFault404_btn_04.png"
+                    checkImgSrc: "qrc:/net.xuin.lpm.res/UKFault404_btn_06.png"
 
                     onClicked: {
                         popover.cancelClick();
@@ -66,8 +66,8 @@ TPopup {
                     id: sumitBtn
                     visible: (errorType != "authError" && errorType != "unknowError")
                              ? true : false;
-                    imgSrc: "qrc:/com.aiyunji.lpm.res/UKFault404_btn_05.png"
-                    checkImgSrc: "qrc:/com.aiyunji.lpm.res/UKFault404_btn_07.png"
+                    imgSrc: "qrc:/net.xuin.lpm.res/UKFault404_btn_05.png"
+                    checkImgSrc: "qrc:/net.xuin.lpm.res/UKFault404_btn_07.png"
 
                     onClicked: {
                         popover.submitClick();
@@ -77,8 +77,8 @@ TPopup {
                 TImageButton {
                     id: retryBtn
                     visible: (errorType == "authError" || errorType == "unknowError") ? true : false;
-                    imgSrc: "qrc:/com.aiyunji.lpm.res/Fail506_btn_01.png"
-                    checkImgSrc: "qrc:/com.aiyunji.lpm.res/Fail506_btn_02.png"
+                    imgSrc: "qrc:/net.xuin.lpm.res/Fail506_btn_01.png"
+                    checkImgSrc: "qrc:/net.xuin.lpm.res/Fail506_btn_02.png"
 
                     onClicked: {
                         popover.retryClick();
@@ -97,7 +97,7 @@ TPopup {
                     color: "#297AFF"
                     Image {
                         anchors.centerIn: parent;
-                        source: "qrc:/com.aiyunji.lpm.res/UKFault404_icon_02.png"
+                        source: "qrc:/net.xuin.lpm.res/UKFault404_icon_02.png"
                     }
                 }
 

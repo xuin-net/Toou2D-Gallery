@@ -141,7 +141,7 @@ MouseArea {
             color: "#BCBCBC"
             rotation: control.opened ? 0 : 180
             anchors.centerIn: indicator
-            source: "qrc:/com.aiyunji.lpm.res/resource/checkPage/icon_moreopen_16＊16.svg"
+            source: "qrc:/net.xuin.lpm.res/resource/checkPage/icon_moreopen_16＊16.svg"
 
             Behavior on rotation {
                 NumberAnimation {duration: 150}

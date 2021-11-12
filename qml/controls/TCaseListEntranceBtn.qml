@@ -15,7 +15,7 @@ Item {
 
     BorderImage {
         anchors.horizontalCenter: parent.horizontalCenter
-        source: "qrc:/com.aiyunji.lpm.res/resource/checkPage/mask.png"
+        source: "qrc:/net.xuin.lpm.res/resource/checkPage/mask.png"
         width: txt.contentWidth + 50;
         height: 50
         border.left: 35;
@@ -56,7 +56,7 @@ Item {
             width: 10;height: 6
             Layout.alignment: Qt.AlignCenter
             color: btn.color
-            source: "qrc:/com.aiyunji.lpm.res/resource/checkPage/icon_more_default_16＊16.svg"
+            source: "qrc:/net.xuin.lpm.res/resource/checkPage/icon_more_default_16＊16.svg"
         }
     }
 
